@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  Product-Service:
+    image: productmicro:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+
+  Repository-Service:
+    image: product_database:latest
+    ports:
+      - "8081:8081"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
