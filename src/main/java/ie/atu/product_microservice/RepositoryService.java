@@ -15,5 +15,5 @@ public interface RepositoryService {
     String removeProduct(@PathVariable Long productId);
 
     @GetMapping("/find/{productId}")
-    String findProduct(@PathVariable Long productId);
+    ProductDetails findProduct(@PathVariable Long productId);
 }
