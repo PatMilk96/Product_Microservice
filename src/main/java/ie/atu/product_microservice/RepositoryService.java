@@ -13,4 +13,7 @@ public interface RepositoryService {
 
     @GetMapping("/remove/{productId}")
     String removeProduct(@PathVariable Long productId);
+
+    @GetMapping("/find/{productId}")
+    String findProduct(@PathVariable Long productId);
 }
