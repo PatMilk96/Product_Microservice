@@ -1,5 +1,6 @@
 package ie.atu.product_microservice;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,7 +23,12 @@ public class ProductController {
     }
 
     @GetMapping("/findProduct/{productId}")
-    public String findById(@PathVariable Long productId){
-        return repositoryService.findProduct(productId);
+    public ResponseEntity<ProductDetails> findById(@PathVariable Long productId) {
+        ProductDetails productDetails = repositoryService.findProduct(productId);
+        if (productDetails != null) {
+            return ResponseEntity.ok(productDetails);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
