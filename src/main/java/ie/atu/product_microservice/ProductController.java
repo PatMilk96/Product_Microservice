@@ -20,4 +20,9 @@ public class ProductController {
     public String removeById(@PathVariable Long productId){
         return repositoryService.removeProduct(productId);
     }
+
+    @GetMapping("/findProduct/{productId}")
+    public String findById(@PathVariable Long productId){
+        return repositoryService.findProduct(productId);
+    }
 }
