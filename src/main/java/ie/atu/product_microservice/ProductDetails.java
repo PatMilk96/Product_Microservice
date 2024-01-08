@@ -21,7 +21,7 @@ public class ProductDetails {
 
     @NotNull(message = "price cannot be empty")
     @Min(1)
-    private Integer price;
+    private Double price;
 
     @NotNull(message = "Product Code cannot be blank")
     private Long productCode;

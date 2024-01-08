@@ -2,14 +2,14 @@ version: "3"
 
 services:
   Product-Service:
-    image: productmicro:latest
+    image: patmilk/productmicro:latest
     ports:
       - "8080:8080"
     networks:
       - my_network
 
   Repository-Service:
-    image: product_database:latest
+    image: patmilk/product_database:latest
     ports:
       - "8081:8081"
     networks:
