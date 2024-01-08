@@ -23,6 +23,10 @@ public class ProductDetails {
     @Min(1)
     private Double price;
 
-    @NotNull(message = "Product Code cannot be blank")
+    @NotNull(message = "Product Code cannot be empty")
     private Long productCode;
+
+    @NotNull(message = "Product amount cannot be empty")
+    @Min(0)
+    private Integer amount;
 }
