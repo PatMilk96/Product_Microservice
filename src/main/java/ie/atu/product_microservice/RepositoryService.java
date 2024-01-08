@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "Repository-Service", url = "http://Repository-Service:8081")
+@FeignClient(name = "Repository-Service", url = "http://localhost:8081")
 public interface RepositoryService {
     @PostMapping("/add")
     String addProduct(@RequestBody ProductDetails productDetails);
