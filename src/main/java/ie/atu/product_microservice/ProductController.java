@@ -3,6 +3,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -24,11 +26,12 @@ public class ProductController {
 
     @GetMapping("/findProduct/{productId}")
     public ResponseEntity<ProductDetails> findById(@PathVariable Long productId) {
-        ProductDetails productDetails = repositoryService.findProduct(productId);
-        if (productDetails != null) {
+        Optional<ProductDetails> optionalProductDetails = Optional.ofNullable(repositoryService.findProduct(productId));
+        if (optionalProductDetails.isPresent()) {
+            ProductDetails productDetails = optionalProductDetails.get();
             return ResponseEntity.ok(productDetails);
         } else {
-            return ResponseEntity.notFound().build();
+            throw new RuntimeException();
         }
     }
 }
