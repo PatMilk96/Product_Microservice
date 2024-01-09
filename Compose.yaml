@@ -1,17 +1,24 @@
 version: "3"
 
 services:
-  Product-Service:
-    image: patmilk/productmicro:latest
+  product-service:
+    image: patmilk/product_microservice:latest
     ports:
       - "8080:8080"
     networks:
       - my_network
 
-  Repository-Service:
-    image: patmilk/product_database:latest
+  repository-service:
+    image: patmilk/product_database_microservice:latest
     ports:
       - "8081:8081"
+    networks:
+      - my_network
+
+  order-service:
+    image: patmilk/order_microservice:latest
+    ports:
+      - "8082:8082"
     networks:
       - my_network
 
