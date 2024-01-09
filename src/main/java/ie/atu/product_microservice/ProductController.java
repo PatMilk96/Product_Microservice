@@ -47,7 +47,7 @@ public class ProductController {
     public String buyProduct(@PathVariable Long productId, @PathVariable int amountWanted){
         Optional<ProductDetails> optionalProductDetails = Optional.ofNullable(repositoryService.findProduct(productId));
         if (optionalProductDetails.isPresent()) {
-            return "Product purchased successfully, your tracking number is " + repositoryService.updateProduct(productId, amountWanted);
+            return repositoryService.updateProduct(productId, amountWanted);
         }
         else {
             return "Product not found";
