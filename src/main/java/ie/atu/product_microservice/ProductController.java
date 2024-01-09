@@ -34,4 +34,15 @@ public class ProductController {
             throw new RuntimeException();
         }
     }
+
+    @PutMapping("/buy/{productId}/{amountWanted}")
+    public String buyProduct(@PathVariable Long productId, @PathVariable int amountWanted){
+        Optional<ProductDetails> optionalProductDetails = Optional.ofNullable(repositoryService.findProduct(productId));
+        if (optionalProductDetails.isPresent()) {
+            return repositoryService.updateProduct(productId, amountWanted);
+        }
+        else {
+            return "Product not found";
+        }
+    }
 }

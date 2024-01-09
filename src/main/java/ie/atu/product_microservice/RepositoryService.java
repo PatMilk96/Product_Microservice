@@ -1,10 +1,7 @@
 package ie.atu.product_microservice;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "Repository-Service", url = "http://localhost:8081")
 public interface RepositoryService {
@@ -16,4 +13,7 @@ public interface RepositoryService {
 
     @GetMapping("/find/{productId}")
     ProductDetails findProduct(@PathVariable Long productId);
+
+    @PutMapping("/buy/{productId}/{amountWanted}")
+    String updateProduct(@PathVariable Long productId, @PathVariable int amountWanted);
 }
