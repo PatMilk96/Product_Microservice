@@ -1,5 +1,7 @@
 package ie.atu.product_microservice;
+import feign.FeignException;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +17,14 @@ public class ProductController {
     }
 
     @PostMapping("/addProduct")
-    public String addProduct(@RequestBody @Valid ProductDetails productDetails){
-        return repositoryService.addProduct(productDetails);
+    public ResponseEntity<String> addProduct(@RequestBody @Valid ProductDetails productDetails){
+        try{
+            repositoryService.addProduct(productDetails);
+            return ResponseEntity.ok("Product " + productDetails.getName() + " added successfully");
+        } catch (FeignException.Conflict ex){
+            ErrorDetails errorDetails = new ErrorDetails("Error", "A product with the same product code already exists");
+            return ResponseEntity.status(HttpStatus.OK).body(errorDetails.toString());
+        }
     }
 
     @GetMapping("/removeProduct/{productId}")
